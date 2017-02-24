@@ -13,7 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20170222093017) do
 
-  create_table "categories", force: :cascade do |t|
+  create_table "categories", force: true do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at",         null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 20170222093017) do
     t.integer  "master_category_id"
   end
 
-  create_table "courses", force: :cascade do |t|
+  create_table "courses", force: true do |t|
     t.string   "name"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -30,26 +30,26 @@ ActiveRecord::Schema.define(version: 20170222093017) do
     t.integer  "user_id"
   end
 
-  create_table "master_categories", force: :cascade do |t|
+  create_table "master_categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "permissions", force: :cascade do |t|
+  create_table "permissions", force: true do |t|
     t.integer  "role_id"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "roles", force: :cascade do |t|
+  create_table "roles", force: true do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
