@@ -1,0 +1,28 @@
+<%= form_for(@category) do |f| %>
+
+    <% if @category.errors.any? %>
+        <ul>
+          <% @category.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+          <% end %>
+        </ul>
+    <% end %>
+
+
+    <div class="field">
+
+      <%=f.label :master_category_id %><br/>
+      <%= f.collection_select :master_category_id, MasterCategory.all, :id, :name, prompt: "Select Master Category"%>
+
+    </div>
+
+    <div class="field">
+      <%= f.label :name %><br>
+      <%= f.text_field :name %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+
+<% end %>

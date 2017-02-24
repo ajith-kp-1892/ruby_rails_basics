@@ -1,0 +1,38 @@
+<h1>list</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th> Name</th>
+    <th> Master Category</th>
+    <th> Courses</th>
+    <th> Action</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @categories.each do |category| %>
+      <tr>
+        <td><%= link_to category.name, category_path(category) %></td>
+        <td><%= category.master_category.name %></td>
+        <td><%= category.courses.count %></td>
+        <td>
+          <% if (user_signed_in?) && (can? :update, Category.new) %>
+              <%= link_to 'update', edit_category_path(category) %>
+          <% end %>
+          <% if (user_signed_in?) && (can? :destroy, Category.new) %>
+              <%= link_to 'delete', category_path(category), method: :delete, data: {confirm: "Are you Sure You Want Delete Category #{category.name}"} %>
+          <% end %>
+        </td>
+      </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<br/>
+
+
+
+<% if (user_signed_in?) && (can? :create, Category.new) %>
+    <%= link_to 'Cretate Category', new_category_path %>
+<% end %>

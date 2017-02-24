@@ -1,0 +1,39 @@
+<%= form_for(@profile) do |f| %>
+    <% if @profile.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+          <ul>
+            <% @profile.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.label :cover %> <%= f.file_field :cover %>
+    </div>
+
+    <!--<div class="field">
+      <%= f.label :date_of_birth %><br>
+      <%= f.text_field :date_of_birth, id:"datepicker" %>
+
+
+      <input type="text" data-provide='datepicker' >
+    </div>-->
+
+    <div class="field">
+      <%= f.label :date_of_birth %><br>
+      <%= f.text_field :date_of_birth, 'data-provide' => 'datepicker' %>
+    </div>
+
+
+    <!--<div class="field">
+      <%= f.label :date_of_birth %><br>
+      <%= f.date_select :date_of_birth %>
+    </div>-->
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+<% end %>

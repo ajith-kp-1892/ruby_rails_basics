@@ -9,7 +9,7 @@ class CoursesController < ApplicationController
   # GET /courses.json
   def index
     if (!current_user.nil?) && (current_user.role? "trainer") 
-      @courses = current_user.courses # Course.where('user_id = ?', current_user.id)
+      @courses = current_user.courses
     else 
       @courses = Course.all 
     end
@@ -18,6 +18,7 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
+    @course=current_user.courses.find(params[:id])
   end
 
   # GET /courses/new
@@ -27,6 +28,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/1/edit
   def edit
+    @course=current_user.courses.find(params[:id])
   end
 
   # POST /courses
@@ -48,6 +50,7 @@ class CoursesController < ApplicationController
   # PATCH/PUT /courses/1
   # PATCH/PUT /courses/1.json
   def update
+    @course=current_user.courses.find(params[:id])
     @course.user_id = current_user.id
     respond_to do |format|
       if @course.update(course_params)
@@ -63,6 +66,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/1
   # DELETE /courses/1.json
   def destroy
+    @course=current_user.courses.find(params[:id])
     @course.destroy
     respond_to do |format|
       format.html { redirect_to courses_url, notice: 'Course was successfully destroyed.' }
@@ -78,6 +82,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:name)
+      params.require(:course).permit(:name, :category_id)
     end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222093017) do
+ActiveRecord::Schema.define(version: 20170224110442) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -41,6 +41,27 @@ ActiveRecord::Schema.define(version: 20170222093017) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "products", force: true do |t|
+    t.string   "name"
+    t.float    "price"
+    t.string   "category"
+    t.text     "description"
+    t.date     "relese_date"
+    t.boolean  "is_avilable"
+    t.integer  "stock"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "profiles", force: true do |t|
+    t.integer  "user_id"
+    t.text     "bio"
+    t.date     "date_of_birth"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "cover"
   end
 
   create_table "roles", force: true do |t|

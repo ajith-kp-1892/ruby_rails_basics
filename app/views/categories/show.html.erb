@@ -1,0 +1,13 @@
+<h1> <%= @category.name %> Category </h1>
+
+<% if @category.courses.empty? %>
+    <p>No Course Found</p>
+<% else %>
+    <ol>
+      <% @category.courses.each do |course| %>
+          <li><%=link_to course.name, course_path(course) %></li>
+      <% end %>
+    </ol>
+<% end %>
+
+<%= link_to 'list of categories', categories_path %>
